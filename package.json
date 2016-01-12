@@ -1,0 +1,47 @@
+{
+  "name": "osmway-to-geojson",
+  "version": "0.0.1",
+  "description": "Converter from OpenStreetMap's Way element into GeoJSON format",
+  "main": "dist/index.js",
+  "scripts": {
+    "install": "tsd --config tsd.json reinstall --overwrite",
+    "clean": "rm -rfv dist",
+    "build": "npm run clean && tsc && npm run dist",
+    "dist": "mkdir -pv dist && cp -v src/*.js dist/",
+    "start": "npm run build",
+    "test": "npm run build && npm run istanbul",
+    "test:with-report": "npm run build && npm run istanbul && npm run test:report",
+    "test:watch": "npm run build && npm run istanbul:watch",
+    "test:mocha": "npm run build && npm run mocha",
+    "test:report": "codeclimate-test-reporter < coverage/lcov.ts.info",
+    "mocha": "mocha --compilers ts:espower-typescript/guess test/*.spec.ts",
+    "istanbul": "istanbul cover _mocha -- --compilers ts:espower-typescript/guess test/*.spec.ts && npm run istanbul:remap",
+    "istanbul:remap": "remap-istanbul -i coverage/coverage.json -o coverage/lcov.ts.info -t lcovonly",
+    "istanbul:watch": "istanbul cover node_modules/.bin/_mocha -- --compilers ts:espower-typescript/guess test/*.spec.ts -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkqubo/osmway-to-geojson.git"
+  },
+  "keywords": [
+    "TypeScript",
+    "OpenStreetMap",
+    "GeoJSON"
+  ],
+  "author": "tkqubo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tkqubo/osmway-to-geojson/issues"
+  },
+  "homepage": "https://github.com/tkqubo/osmway-to-geojson#readme",
+  "devDependencies": {
+    "codeclimate-test-reporter": "^0.1.1",
+    "espower-typescript": "^3.0.0",
+    "istanbul": "^0.4.2",
+    "mocha": "^2.3.4",
+    "power-assert": "^1.2.0",
+    "remap-istanbul": "^0.5.1",
+    "tsd": "^0.6.5",
+    "typescript": "^1.7.5"
+  }
+}
