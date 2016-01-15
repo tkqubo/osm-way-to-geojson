@@ -8,7 +8,7 @@
     "clean": "rm -rfv dist",
     "build": "npm run clean && tsc && npm run dist",
     "dist": "mkdir -pv dist && cp -v src/*.js dist/",
-    "start": "npm run build",
+    "start": "npm run build && node dist/index.js",
     "test": "npm run build && npm run istanbul",
     "test:with-report": "npm run build && npm run istanbul && npm run test:report",
     "test:watch": "npm run build && npm run istanbul:watch",
@@ -45,7 +45,11 @@
     "typescript": "^1.7.5"
   },
   "dependencies": {
+    "lodash": "^4.0.0",
     "osmtogeojson": "^2.2.6",
-    "rx": "^4.0.7"
+    "request": "^2.67.0",
+    "request-promise": "^2.0.0",
+    "rx": "^4.0.7",
+    "xmldom": "^0.1.21"
   }
 }

@@ -1,7 +1,7 @@
 'use strict';
 
-import {RawOsm} from './rawosm';
+import {fetchWay} from './osmJsonFetcher';
 
-export default function helloWorld(): string {
-  return 'Hello world';
-};
+fetchWay(34211254)
+  .map(xml => JSON.stringify(xml, null, 2))
+  .subscribe(item => console.log(item));
